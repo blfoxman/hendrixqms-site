@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>
+// Old kiosk, badge and QR links (hendrixqms.com/?kiosk=... and blfoxman.github.io/hendrix-qms/?kiosk=...)
+// belong to the Summit Solutions platform: send them there with the link unchanged.
+(function(){var q=location.search||'';if(/[?&](kiosk|badge|state|lic)=/.test(q))location.replace('summitsolutions/'+q+(location.hash||''));})();
+</script>
+<title>Hendrix QMS: quality records for licensed cannabis operators</title>
+<meta name="description" content="Hendrix is the quality management system for licensed cannabis: compliance, product safety, CSQ, cGMP, HACCP and state rules: batch records, METRC checks, SOPs, training, holds and facility logs in one place, signed and audited.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hendrix QMS">
+<meta property="og:title" content="Hendrix QMS">
+<meta property="og:description" content="The quality management system built for CSQ certification, cGMP and state compliance.">
+<link rel="canonical" href="https://hendrixqms.com/">
+<meta property="og:url" content="https://hendrixqms.com/">
+<meta property="og:image" content="https://hendrixqms.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<style>
+:root{--black:#000;--panel:#0f0e0b;--gold:#d4af37;--gold-hi:#f1d57a;--gold-lo:#a8841c;--bone:#ece6d6;--soft:#c9c2b0;--stone:#8c877a;--rule:#23211c;--go:#5fbf8a;--stop:#e5705a;
+  --gold-grad:linear-gradient(135deg,var(--gold-hi) 0%,var(--gold) 45%,var(--gold-lo) 100%);interpolate-size:allow-keywords}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:24px}
+body{margin:0;background:var(--black);color:var(--bone);font-family:Archivo,"Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.6;font-variation-settings:"wdth" 100}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+[hidden]{display:none!important}
+
+/* top */
+.top{position:relative;z-index:1;display:flex;align-items:center;justify-content:flex-end;gap:16px;padding-top:24px;padding-bottom:24px}
+.mark{display:flex;align-items:center;gap:12px;text-decoration:none}
+.mark b{font-weight:800;font-size:16px;letter-spacing:.24em;font-variation-settings:"wdth" 125;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.top nav{display:flex;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;font:inherit;font-size:15px;font-weight:650;text-decoration:none;cursor:pointer;border:1px solid #3a372f;background:transparent;color:var(--bone);white-space:nowrap}
+.btn:hover{border-color:var(--gold)}
+.btn.solid{background:var(--gold-grad);color:#1a1405;border-color:transparent}
+.btn.solid:hover{filter:brightness(1.06)}
+.btn.plain{border-color:transparent;padding:0 12px}
+.btn.plain:hover{color:var(--gold-hi)}
+.tc .sm{display:none}
+
+/* logo first */
+.brand{position:relative;display:grid;place-items:center;padding:28px 20px 56px}
+.brand::before{content:"";position:absolute;left:50%;top:42%;width:min(980px,100vw);height:640px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(212,175,55,.16),rgba(212,175,55,.05) 55%,transparent);pointer-events:none}
+.logo{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.logo-mark{width:clamp(92px,11vw,132px);height:auto;display:block;filter:drop-shadow(0 0 18px rgba(212,175,55,.25))}
+.lm-hex,.lm-h{stroke-dasharray:1;stroke-dashoffset:0}
+.logo-word{margin:22px 0 0;font-weight:800;font-size:clamp(46px,8.4vw,104px);line-height:1;letter-spacing:.3em;margin-right:-.3em;font-variation-settings:"wdth" 125;
+  background:linear-gradient(135deg,#f6e3a1 0%,#d4af37 48%,#a8841c 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo-sub{margin:16px 0 0;color:var(--soft);font-size:clamp(12px,1.3vw,15px);font-weight:600;letter-spacing:.62em;margin-right:-.62em;text-transform:uppercase}
+@media (prefers-reduced-motion:no-preference){
+  .lm-hex{stroke-dashoffset:1;animation:lmdraw 1.3s cubic-bezier(.65,0,.35,1) .15s forwards}
+  .lm-h{stroke-dashoffset:1;animation:lmdraw .7s ease-out 1.2s forwards}
+  .logo-word,.logo-sub{opacity:0;animation:lmfade .9s ease-out 1.05s forwards}
+  .logo-sub{animation-delay:1.35s}
+}
+@keyframes lmdraw{to{stroke-dashoffset:0}}
+@keyframes lmfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* the live line map, full width */
+.live-wrap{padding-bottom:20px}
+.live{min-width:0;border:1px solid var(--rule);border-radius:22px;background:linear-gradient(180deg,#0c0b09,#070706);padding:22px 26px 20px}
+.live-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.live-head h2{margin:0;display:flex;align-items:center;gap:10px;font-size:18px;font-weight:750;font-variation-settings:"wdth" 106}
+.live-head p{margin:0;color:var(--stone);font-size:14.5px}
+.live-head .dot{width:9px;height:9px;border-radius:50%;background:var(--go);box-shadow:0 0 0 0 rgba(95,191,138,.6)}
+@media (prefers-reduced-motion:no-preference){.live-head .dot{animation:livedot 2s ease-out infinite}}
+@keyframes livedot{0%{box-shadow:0 0 0 0 rgba(95,191,138,.55)}70%{box-shadow:0 0 0 9px rgba(95,191,138,0)}100%{box-shadow:0 0 0 0 rgba(95,191,138,0)}}
+
+/* then the words */
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:64px;padding-bottom:84px}
+h1{margin:0;max-width:15em;font-weight:800;font-size:clamp(36px,4.6vw,60px);line-height:1.02;letter-spacing:-.01em;font-variation-settings:"wdth" 118;text-wrap:balance}
+.lede{margin:22px 0 0;max-width:34em;color:var(--soft);font-size:19px;text-wrap:pretty}
+.hero .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:30px}
+.stds{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;list-style:none;margin:28px 0 0;padding:0;color:var(--stone);font-size:14px;font-weight:600}
+.stds li:first-child{color:var(--gold-hi)}
+.map{width:100%;height:auto;display:block}
+.map text{font-family:Archivo,Arial,sans-serif;font-variation-settings:"wdth" 100}
+.map .lbl{fill:var(--stone);font-size:12.5px}
+.map .line-name{font-size:14px;font-weight:700}
+.map .st{fill:var(--black);stroke-width:3}
+.map .st.pulse{animation:stpulse .9s ease-out}
+@keyframes stpulse{0%{stroke-width:7}100%{stroke-width:3}}
+.map .tl{font-size:12px;font-weight:750}
+.map-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:6px;border-top:1px solid var(--rule);padding-top:14px}
+.map-stats div{display:flex;flex-direction:column;gap:2px}
+.map-stats b{font-size:26px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;font-variation-settings:"wdth" 112}
+.map-stats b.hold{color:var(--stop)}
+.map-stats span{font-size:13px;color:var(--stone)}
+
+/* demo */
+.demo{padding-bottom:88px}
+.demo-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:16px}
+.demo-head h2{margin:0;font-size:22px;font-weight:750;font-variation-settings:"wdth" 106}
+.demo-head p{margin:0;color:var(--stone);font-size:15px}
+.demo-video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#000;border:1px solid var(--rule);border-radius:16px}
+
+/* the index: one line per topic, the explanation opens on click */
+.idx{display:grid;grid-template-columns:250px minmax(0,1fr);gap:0 64px;padding-top:56px;padding-bottom:64px;border-top:1px solid var(--rule)}
+.idx > header h2{position:sticky;top:28px;margin:0;font-size:clamp(28px,3vw,36px);font-weight:800;line-height:1.05;font-variation-settings:"wdth" 114}
+.idx > header p{margin:12px 0 0;color:var(--stone);font-size:15px;max-width:22em}
+.rows{border-top:1px solid var(--rule)}
+details{border-bottom:1px solid var(--rule)}
+summary{display:grid;grid-template-columns:minmax(0,1fr) 34px;align-items:center;gap:4px 24px;padding:20px 4px;cursor:pointer;list-style:none;border-radius:6px}
+summary::-webkit-details-marker{display:none}
+summary b{font-size:21px;font-weight:750;line-height:1.25;font-variation-settings:"wdth" 106}
+summary span{grid-column:1;color:var(--stone);font-size:16px;line-height:1.45}
+summary i{grid-column:2;grid-row:1/span 2;width:34px;height:34px;border-radius:50%;border:1px solid #3a372f;position:relative;transition:transform .25s,border-color .2s}
+summary i::before,summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;margin:-1px 0 0 -6px;background:var(--gold-hi)}
+summary i::after{transform:rotate(90deg);transition:transform .25s}
+summary:hover b{color:var(--gold-hi)}
+summary:hover i{border-color:var(--gold)}
+details[open] summary i{border-color:var(--gold)}
+details[open] summary i::after{transform:rotate(0deg)}
+details[open] summary span{color:var(--soft)}
+details::details-content{block-size:0;overflow:hidden;opacity:0;transition:block-size .3s ease,opacity .3s ease,content-visibility .3s allow-discrete}
+details[open]::details-content{block-size:auto;opacity:1}
+.body{padding:2px 4px 28px;max-width:44em;color:var(--soft);font-size:16px}
+.body p{margin:0 0 14px}
+.body ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.body li{position:relative;padding-left:22px;line-height:1.5}
+.body li::before{content:"";position:absolute;left:0;top:.66em;width:10px;height:2px;background:var(--gold)}
+.body dl{margin:0;display:grid;gap:16px}
+.body dt{font-weight:700;color:var(--bone)}
+.body dd{margin:2px 0 0}
+.body a{color:var(--gold-hi)}
+.ledger{margin:22px 0 0;background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:8px 20px 16px}
+.ledger table{width:100%;border-collapse:collapse;font-size:15px}
+.ledger th{text-align:left;font-weight:650;color:var(--stone);font-size:13px;padding:12px 8px 10px;border-bottom:1px solid var(--rule)}
+.ledger td{padding:13px 8px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--bone)}
+.ledger td:first-child{font-weight:800;color:var(--gold-hi);width:3.2em}
+.ledger td small{display:block;color:var(--stone);font-size:13px;margin-top:3px}
+.ledger tr:last-child td{border-bottom:0}
+.chip{display:inline-block;border-radius:999px;padding:3px 10px;font-size:13px;font-weight:700;white-space:nowrap}
+.chip.ok{background:rgba(95,191,138,.14);color:#7fd4a2}
+.chip.due{background:rgba(229,112,90,.16);color:#f0907c}
+.ledger figcaption{color:var(--stone);font-size:13px;margin-top:10px}
+
+/* the hive: one hexagon per topic; clicking one opens a box with the explanation */
+.hive{--s:min(212px,calc((100vw - 396px) / 3.5 - 10px));--g:10px;--h:calc(var(--s) * 1.1547);display:grid;grid-template-columns:repeat(7,calc((var(--s) + var(--g)) / 2));grid-auto-rows:calc(var(--h) * .75 + var(--g) * .87);padding-bottom:calc(var(--h) * .25);justify-content:start}
+.hex:nth-child(1){grid-area:1/1/2/3}.hex:nth-child(2){grid-area:1/3/2/5}.hex:nth-child(3){grid-area:1/5/2/7}
+.hex:nth-child(4){grid-area:2/2/3/4}.hex:nth-child(5){grid-area:2/4/3/6}.hex:nth-child(6){grid-area:2/6/3/8}
+.hex{width:var(--s);height:var(--h);justify-self:center;align-self:start;display:block;position:relative;border:0;padding:0;cursor:pointer;font:inherit;color:var(--bone);
+  background:#34302a;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);transition:background .2s}
+.hex{container-type:inline-size}
+.hex .in{position:absolute;inset:1.5px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:#0e0d0a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:0 24px;text-align:center;transition:background .2s}
+.hex b{display:block;font-size:18.5px;font-weight:750;line-height:1.18;font-variation-settings:"wdth" 106}
+.hex small{display:block;font-size:13.5px;line-height:1.38;color:var(--stone);max-width:15em}
+.hex .in::after{content:"+";display:block;margin-top:2px;font-size:20px;font-weight:600;line-height:1;color:var(--gold)}
+.hex:hover,.hex:focus-visible{background:var(--gold-grad);outline:none}
+.hex:hover .in,.hex:focus-visible .in{background:#17140d}
+.hex:hover b,.hex:focus-visible b{color:var(--gold-hi)}
+.hex.lead .in{background:linear-gradient(160deg,#2a220d 0%,#0e0d0a 70%)}
+.hex.lead{background:#6d5a1f}
+
+@container (max-width:200px){.hex small{display:none}.hex b{font-size:16px}}
+
+/* the box */
+dialog.box{width:min(760px,calc(100vw - 32px));max-height:min(86vh,900px);padding:0;border:1px solid #3a3428;border-radius:20px;background:#0f0e0b;color:var(--bone);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+dialog.box::backdrop{background:rgba(0,0,0,.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+dialog.box[open]{animation:boxin .22s ease-out}
+@keyframes boxin{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+.box .tb{position:relative;padding:34px 40px 24px;max-height:min(86vh,900px);overflow:auto}
+.box .tb-mark{display:flex;align-items:center;gap:10px;margin:0 0 14px;color:var(--gold);font-size:14px;font-weight:650}
+.box h2{outline:none;margin:0;font-size:clamp(26px,3vw,34px);font-weight:800;line-height:1.08;font-variation-settings:"wdth" 112;padding-right:40px}
+.box .tb-tz{margin:10px 0 22px;color:var(--soft);font-size:18px}
+.box .body{padding:0;max-width:none}
+.box .tb-x{position:absolute;top:22px;right:22px;width:40px;height:40px;border-radius:50%;border:1px solid #3a372f;background:transparent;color:var(--bone);font-size:22px;line-height:1;cursor:pointer}
+.box .tb-x:hover{border-color:var(--gold);color:var(--gold-hi)}
+.box .tb-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:26px;padding-top:18px;border-top:1px solid var(--rule)}
+.box .tb-nav .btn{min-height:40px;font-size:14px}
+.box .tb-nav .btn[disabled]{opacity:.35;cursor:default;border-color:#3a372f}
+.box .tb-pos{color:var(--stone);font-size:14px}
+
+/* sign in and work with us */
+.end{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start;padding-top:64px;padding-bottom:80px;border-top:1px solid var(--rule)}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:18px;padding:32px}
+.card h2{margin:0 0 6px;font-size:26px;font-weight:800;line-height:1.1;font-variation-settings:"wdth" 110}
+.card > p{margin:0 0 20px;color:var(--stone);font-size:15px}
+.card label{display:block;font-size:14px;color:var(--soft);margin-bottom:8px}
+.field{display:flex;align-items:center;border:1px solid #3a372f;border-radius:12px;background:var(--black);overflow:hidden}
+.field:focus-within{border-color:var(--gold)}
+.field span{padding:0 4px 0 14px;color:var(--stone);font-size:15px;white-space:nowrap}
+.field input{flex:1;min-width:0;border:0;background:transparent;color:var(--bone);font:inherit;font-size:16px;padding:13px 14px 13px 0;outline:none}
+.signin .btn.solid{width:100%;margin-top:14px}
+.err{min-height:22px;margin:10px 0 0;color:var(--stop);font-size:14px}
+.cont{margin:10px 0 0;font-size:15px;color:var(--stone)}
+.cont a{color:var(--gold-hi)}
+.mailto{display:block;margin:4px 0 0;font-weight:800;font-size:clamp(22px,2.4vw,30px);line-height:1.15;text-decoration:none;overflow-wrap:anywhere;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.row .btn{flex:1 1 150px}
+.alt{margin-top:14px;padding:14px 16px;border:1px solid var(--rule);border-radius:12px;font-size:15px;color:var(--soft)}
+.alt p{margin:0 0 10px}
+.alt .row{margin-top:0}
+.copied{min-height:20px;margin:10px 0 0;color:var(--go);font-size:14px}
+.work details{margin-top:18px;border-top:1px solid var(--rule);border-bottom:0}
+.work summary{padding:16px 0 6px}
+.work summary b{font-size:17px}
+.steps{margin:6px 0 0;padding:0;list-style:none;counter-reset:st;display:grid;gap:14px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:36px minmax(0,1fr);gap:2px 12px;padding:0}
+.steps li::before{content:counter(st);position:static;grid-row:span 2;width:30px;height:30px;border-radius:50%;border:1px solid var(--gold);background:none;color:var(--gold-hi);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+.steps b{font-weight:700;color:var(--bone)}
+
+footer{border-top:1px solid var(--rule);padding:26px 0 40px;color:var(--stone);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--gold-hi);text-decoration:none;display:inline-block;padding:6px 0}
+footer a:hover{text-decoration:underline}
+
+@media (max-width:1100px){
+  .idx{grid-template-columns:minmax(0,1fr)}
+  .idx > header{margin-bottom:26px}
+  .idx > header h2{position:static}
+  .hive{--s:min(212px,calc((100vw - 100px) / 3.5 - 10px))}
+}
+@media (max-width:900px){
+  .hero{padding-top:48px;padding-bottom:64px}
+  .idx{grid-template-columns:minmax(0,1fr);padding-top:44px;padding-bottom:52px}
+  .idx > header{margin-bottom:22px}
+  .idx > header h2{position:static}
+  .end{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:600px){
+  .wrap{padding-left:20px;padding-right:20px}
+  .top nav .btn:not(.solid):not(.tc){display:none}
+  .top nav .btn{padding:0 12px;font-size:14px}
+  .top nav{gap:8px}
+  .top{gap:10px}
+  .brand{padding:18px 16px 40px}
+  .logo-word{letter-spacing:.22em;margin-right:-.22em}
+  .logo-sub{letter-spacing:.42em;margin-right:-.42em}
+  .live{padding:16px 14px 14px;border-radius:16px}
+  .live-head p{font-size:13.5px}
+  .map-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px}
+  .map-stats span{font-size:13.5px}
+  .top nav .tc .lg{display:none}
+  .top nav .tc .sm{display:inline}
+  summary b{font-size:19px}
+  .hive{--s:min(170px,calc((100vw - 40px) / 2 - 8px));--g:8px;grid-template-columns:repeat(4,calc((var(--s) + var(--g)) / 2));justify-content:center}
+  .hex:nth-child(1){grid-area:1/1/2/3}.hex:nth-child(2){grid-area:1/3/2/5}.hex:nth-child(3){grid-area:2/2/3/4}
+  .hex:nth-child(4){grid-area:3/1/4/3}.hex:nth-child(5){grid-area:3/3/4/5}.hex:nth-child(6){grid-area:4/2/5/4}
+  .hex .in{padding:0 14px;gap:6px}
+  .hex b{font-size:15.5px}
+  .hex small{display:none}
+  .box .tb{padding:28px 22px 20px}
+  .box .tb-x{top:16px;right:16px}
+  .card{padding:24px 20px}
+  .demo-head{flex-direction:column;gap:4px}
+  .ledger{padding:6px 10px 12px}
+  .ledger td,.ledger th{padding-left:4px;padding-right:4px}
+  .map-stats b{font-size:22px}
+}
+@media (max-width:380px){.mark b{display:none}}
+@media (prefers-reduced-motion:reduce){
+  .map .st.pulse{animation:none}
+  details::details-content{transition:none}
+  dialog.box[open]{animation:none}
+  .hex,.hex .in{transition:none}
+  summary i,summary i::after{transition:none}
+}
+</style>
+</head>
+<body>
+<header class="wrap top">
+  <nav>
+    <a class="btn plain" href="#work-with-us">Work with us</a>
+    <a class="btn tc" href="training/"><span class="lg">Training Center</span><span class="sm">Training</span></a>
+    <a class="btn solid" href="#sign-in">Client sign-in</a>
+  </nav>
+</header>
+
+<main>
+<section class="brand" aria-label="Hendrix QMS">
+  <div class="logo">
+    <svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true">
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1d57a"/><stop offset=".5" stop-color="#d4af37"/><stop offset="1" stop-color="#a8841c"/></linearGradient></defs>
+      <polygon class="lm-hex" pathLength="1" points="60,6 106.8,33 106.8,87 60,114 13.2,87 13.2,33" fill="none" stroke="url(#lg)" stroke-width="5" stroke-linejoin="round"/>
+      <path class="lm-h" pathLength="1" d="M40 36v48M80 36v48M40 60h40" fill="none" stroke="url(#lg)" stroke-width="7.5" stroke-linecap="round"/>
+    </svg>
+    <p class="logo-word">HENDRIX</p>
+    <p class="logo-sub">Quality Management</p>
+  </div>
+</section>
+
+<section class="wrap live-wrap" aria-labelledby="live-h">
+  <div class="live">
+    <div class="live-head"><h2 id="live-h"><span class="dot" aria-hidden="true"></span>Live line map</h2><p>Every batch at its real step, from first station to release. Red means stopped.</p></div>
+  <svg class="map" id="map" viewBox="0 0 1160 470" role="img" aria-labelledby="map-t">
+    <title id="map-t">A live production line map: Pre-Rolls, Cartridges, Infused Flower, Gummies and Manufacturing Process batches move through their stations into Testing, Passed, QC Release and Released. A batch that fails testing goes on hold, then rejoins after a retest.</title>
+    <g id="rails"></g>
+    <g id="trains"></g>
+  </svg>
+  <div class="map-stats" aria-live="off">
+    <div><b id="ms-prod">0</b><span>in production</span></div>
+    <div><b id="ms-lab">0</b><span>at the lab</span></div>
+    <div><b id="ms-hold" class="hold">0</b><span>on hold</span></div>
+    <div><b id="ms-rel">0</b><span>released today</span></div>
+  </div>
+  </div>
+</section>
+
+<div class="wrap hero">
+  <h1>From receiving to release, every step on the record.</h1>
+  <p class="lede">The quality management system for licensed cannabis. Batch records, METRC checks, SOPs, training, holds and facility logs in one place, signed and audited. Any state, set up your way.</p>
+  <div class="actions">
+    <a class="btn solid" href="#sign-in">Client sign-in</a>
+    <a class="btn" href="#demo">Watch the demo</a>
+    <a class="btn plain" href="#work-with-us">Work with us</a>
+  </div>
+  <ul class="stds" aria-label="Standards and rules Hendrix is built around">
+    <li>CSQ v2.0</li><li>cGMP</li><li>HACCP</li><li>21 CFR 117</li><li>METRC</li><li>Any state's cannabis rules</li>
+  </ul>
+</div>
+
+<section id="demo" class="wrap demo">
+  <div class="demo-head"><h2>See Hendrix in 90 seconds</h2><p>Line map, cultivation map, QR logs, SDS reading, training, SOPs and the audit trail.</p></div>
+  <video class="demo-video" controls playsinline preload="none" poster="media/hendrix-demo-poster.jpg" aria-label="Hendrix QMS demo video">
+    <source src="media/hendrix-demo.mp4" type="video/mp4">
+    Your browser cannot play this video. <a href="media/hendrix-demo.mp4">Download it</a>.
+  </video>
+</section>
+
+<section class="wrap idx" id="why" aria-labelledby="why-h">
+  <header><h2 id="why-h">Why Hendrix</h2><p>Compliance, product safety, standards and quality, on every record. Click a hexagon to read more.</p></header>
+  <div class="hive">
+      <button class="hex lead" type="button" data-t="compliance" aria-haspopup="dialog"><span class="in"><b>Compliance</b><small>Meet your state's rules and show it on any day an inspector walks in.</small></span></button>
+      <button class="hex" type="button" data-t="product-safety" aria-haspopup="dialog"><span class="in"><b>Product safety</b><small>Nothing unsafe leaves the building, and anything that does can be found fast.</small></span></button>
+      <button class="hex" type="button" data-t="quality-system" aria-haspopup="dialog"><span class="in"><b>Quality</b><small>A quality system that runs every day, not a binder that comes out before an audit.</small></span></button>
+      <button class="hex" type="button" data-t="csq" aria-haspopup="dialog"><span class="in"><b>Built for CSQ certification</b><small>The CSQ v2.0 standard, clause by clause, with the evidence for each.</small></span></button>
+      <button class="hex" type="button" data-t="standards" aria-haspopup="dialog"><span class="in"><b>Standards</b><small>Built around the standards cannabis operators are audited against.</small></span></button>
+      <button class="hex" type="button" data-t="inspector" aria-haspopup="dialog"><span class="in"><b>Ready when the inspector is</b><small>Records built to be shown, not rebuilt the night before.</small></span></button>
+  </div>
+  <div class="topics" hidden>
+      <article class="topic" id="compliance" data-title="Compliance"><p class="tz">Meet your state's rules and show it on any day an inspector walks in.</p><div class="body"><ul><li>Your state's rulebook loaded from the official PDF, organized by topic and linked to the records that meet each rule</li><li>METRC tags on every lot and package. METRC Check compares Hendrix with your METRC export: lab status, holds, shipments and counts</li><li>The 21 CFR 117 checklist food-safety inspectors use, with your evidence next to each item</li><li>Printouts with your legal name and license number, and an audit trail you can export</li></ul></div></article>
+      <article class="topic" id="product-safety" data-title="Product safety"><p class="tz">Nothing unsafe leaves the building, and anything that does can be found fast.</p><div class="body"><ul><li>A failed test blocks release and shipping. Returns and failures go on hold until QA decides</li><li>HACCP plans with critical control points, limits, corrective actions and a second person verifying</li><li>Line clearance before every run, and no clearance while equipment is out of service or past calibration</li><li>One step back to suppliers, one step forward to customers, and timed mock recalls</li><li>Approved chemicals with their SDS, approved suppliers, employee illness and hygiene checks</li></ul></div></article>
+      <article class="topic" id="quality-system" data-title="Quality"><p class="tz">A quality system that runs every day, not a binder that comes out before an audit.</p><div class="body"><ul><li>Deviations and CAPA with root cause and an effectiveness check</li><li>Complaints, internal audits that show any clause not checked in 12 months, and management review</li><li>Risk register, change control, quality objectives with KPIs, and a verification schedule</li><li>Controlled SOPs with versions and read-and-sign, and training by role with quizzes</li><li>Approvals signed with the person's password, and two-step sign-in</li></ul></div></article>
+      <article class="topic" id="csq" data-title="Built for CSQ certification"><p class="tz">The CSQ v2.0 standard, clause by clause, with the evidence for each.</p><div class="body"><p>CSQ (Cannabis Safety &amp; Quality) is the accredited certification for licensed cannabis operations, audited by an independent certification body. Hendrix holds the CSQ v2.0 standard for your operation clause by clause, so every requirement has a way you meet it and the evidence to prove it.</p><dl><div><dt>The standard, clause by clause</dt><dd>Cultivation, extraction and manufacturing standards, with how you meet each clause, the evidence and the files, kept for each license.</dd></div><div><dt>Audits that cover everything</dt><dd>Internal audits record the clauses they checked. Hendrix shows any clause that hasn't been audited in 12 months, before the auditor does.</dd></div><div><dt>State rules first</dt><dd>CSQ expects you to meet your state's cannabis rules and show it. Add any state and its regulator; that state's rulebook sits next to the standard.</dd></div><div><dt>cGMP and food safety</dt><dd>HACCP plans with critical control points, monitoring and verification. The 21 CFR 117 checklist food-safety inspectors use, hygiene training and the employee illness log.</dd></div></dl><figure class="ledger" aria-labelledby="ledger-cap"><table>
+        <thead><tr><th scope="col">Clause</th><th scope="col">Requirement</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          <tr><td>1.3</td><td>Meet your state's cannabis rules<small>Evidence: your state's rulebook</small></td><td><span class="chip ok">Met</span></td></tr>
+          <tr><td>1.4</td><td>Control documents and records<small>Evidence: SOP master list, approved versions</small></td><td><span class="chip ok">Met</span></td></tr>
+          <tr><td>1.5</td><td>Audit the system internally<small>Last audited 3 months ago</small></td><td><span class="chip ok">Audited</span></td></tr>
+          <tr><td>2A</td><td>cGMP prerequisite programs<small>Evidence: sanitation, pest and hygiene logs</small></td><td><span class="chip ok">Met</span></td></tr>
+          <tr><td>2A</td><td>Pest control program<small>Not audited in 12 months</small></td><td><span class="chip due">Audit due</span></td></tr>
+        </tbody></table>
+        <figcaption id="ledger-cap">An example of the conformance view: each clause, the evidence behind it, and what needs attention.</figcaption></figure></div></article>
+      <article class="topic" id="standards" data-title="Standards"><p class="tz">Built around the standards cannabis operators are audited against.</p><div class="body"><ul><li>CSQ v2.0 for manufacturing, extraction and cultivation, clause by clause with evidence</li><li>cGMP and 21 CFR 117: hazard analysis, preventive controls, sanitation and records</li><li>HACCP plans built on its seven principles</li><li>Data you can trust: every record attributable, time-stamped and kept, with changes and the reason on file</li></ul></div></article>
+      <article class="topic" id="inspector" data-title="Ready when the inspector is"><p class="tz">Records built to be shown, not rebuilt the night before.</p><div class="body"><dl><div><dt>An audit trail nobody can edit</dt><dd>Every change is kept with who made it, when and why. Records are voided with a reason, never deleted.</dd></div><div><dt>A password at every signature</dt><dd>Approvals, releases and SOP acknowledgements are signed by the person, with their password, at the moment they sign.</dd></div><div><dt>METRC stays the source</dt><dd>Hendrix reads your METRC data to check counts and tags. It never writes to METRC.</dd></div><div><dt>Paperwork on demand</dt><dd>Batch records, training records and SOP packs, with or without signed acknowledgements, ready to print or save as PDF.</dd></div></dl></div></article>
+  </div>
+</section>
+
+<section class="wrap idx" id="inside" aria-labelledby="inside-h">
+  <header><h2 id="inside-h">What it keeps</h2><p>Each license gets the pages it needs. Everyone sees only the licenses they work at.</p></header>
+  <div class="hive">
+      <button class="hex lead" type="button" data-t="production" aria-haspopup="dialog"><span class="in"><b>Production</b><small>Batch records, manufacturing runs, a planner and a live line map.</small></span></button>
+      <button class="hex" type="button" data-t="metrc-and-inventory" aria-haspopup="dialog"><span class="in"><b>METRC and inventory</b><small>Receiving by METRC tag, METRC checks, holds, shipping and recalls.</small></span></button>
+      <button class="hex" type="button" data-t="quality-records" aria-haspopup="dialog"><span class="in"><b>Quality records</b><small>Deviations and CAPA, complaints, audits, HACCP, risk and change.</small></span></button>
+      <button class="hex" type="button" data-t="sops-and-training" aria-haspopup="dialog"><span class="in"><b>SOPs and training</b><small>Approved SOPs, signed acknowledgements, courses with quizzes.</small></span></button>
+      <button class="hex" type="button" data-t="facility" aria-haspopup="dialog"><span class="in"><b>Facility</b><small>Logs on QR codes, visitors, the time clock, equipment and chemicals.</small></span></button>
+      <button class="hex" type="button" data-t="cultivation" aria-haspopup="dialog"><span class="in"><b>Cultivation</b><small>Plant batches from clone to harvest, then dry, cure and packaging.</small></span></button>
+  </div>
+  <div class="topics" hidden>
+      <article class="topic" id="production" data-title="Production"><p class="tz">Batch records, manufacturing runs, a planner and a live line map.</p><div class="body"><p>Batch records for extraction, pre-rolls, cartridges, gummies and infused flower, with every input by METRC tag, weight checks and yields. Manufacturing runs with material used, product made and waste. A production planner that works from the approved recipe, and a live line map that shows every batch at its real step and turns red when one is stopped.</p></div></article>
+      <article class="topic" id="metrc-and-inventory" data-title="METRC and inventory"><p class="tz">Receiving by METRC tag, METRC checks, holds, shipping and recalls.</p><div class="body"><p>Receiving into quarantine by METRC tag with the COA, inventory you can update from a spreadsheet, a check of Hendrix counts against your METRC export, holds and release, shipping with pre-load checks, and trace back and forward for recalls.</p></div></article>
+      <article class="topic" id="quality-records" data-title="Quality records"><p class="tz">Deviations and CAPA, complaints, audits, HACCP, risk and change.</p><div class="body"><p>Deviations and CAPA, complaints with a QR form for your stores, internal audits, HACCP, the risk register, change control, quality objectives and management review.</p></div></article>
+      <article class="topic" id="sops-and-training" data-title="SOPs and training"><p class="tz">Approved SOPs, signed acknowledgements, courses with quizzes.</p><div class="body"><p>Approved SOP versions, an SOP creator, acknowledgements signed by each person, training courses with quizzes, and a training matrix by role.</p></div></article>
+      <article class="topic" id="facility" data-title="Facility"><p class="tz">Logs on QR codes, visitors, the time clock, equipment and chemicals.</p><div class="body"><p>Sanitation, pest, temperature, hygiene walk and visitor logs on QR codes and kiosks that keep working without internet. Maintenance and purchase requests, rooms, a time clock with photo badges, equipment with calibration, and chemicals with their SDS.</p></div></article>
+      <article class="topic" id="cultivation" data-title="Cultivation"><p class="tz">Plant batches from clone to harvest, then dry, cure and packaging.</p><div class="body"><p>Plant batches from clone or seed to harvest with every application recorded, room and bed capacity, a facility map, then dry, cure, testing and packaging, tracked by METRC tag.</p></div></article>
+  </div>
+</section>
+
+<section class="wrap idx" id="your-way" aria-labelledby="yours-h">
+  <header><h2 id="yours-h">Your way</h2><p>Not tied to one state's program. Shaped around your products and your SOPs.</p></header>
+  <div class="hive">
+      <button class="hex lead" type="button" data-t="any-state" aria-haspopup="dialog"><span class="in"><b>Works in any state</b><small>Add the states you're licensed in, each kept to its own rules.</small></span></button>
+      <button class="hex" type="button" data-t="your-products-your-fields" aria-haspopup="dialog"><span class="in"><b>Your products, your fields</b><small>Your SKUs, specs, materials and checklists.</small></span></button>
+      <button class="hex" type="button" data-t="your-people-your-access" aria-haspopup="dialog"><span class="in"><b>Your people, your access</b><small>Your roles, and who can see, edit, approve and sign.</small></span></button>
+      <button class="hex" type="button" data-t="your-documents" aria-haspopup="dialog"><span class="in"><b>Your documents</b><small>SOPs, courses and printouts with your names and logo.</small></span></button>
+      <button class="hex" type="button" data-t="your-company-s-own-hendrix" aria-haspopup="dialog"><span class="in"><b>Your company's own Hendrix</b><small>Your own address, run by your own admins.</small></span></button>
+      <button class="hex" type="button" data-t="training-for-your-team" aria-haspopup="dialog"><span class="in"><b>Training for your team</b><small>Videos, an in-depth series and the full user manual.</small></span></button>
+  </div>
+  <div class="topics" hidden>
+      <article class="topic" id="any-state" data-title="Works in any state"><p class="tz">Add the states you're licensed in, each kept to its own rules.</p><div class="body"><p>Add a state with its regulator and its rulebook. Licenses in several states run side by side, each kept to its own rules, and METRC checks work wherever METRC is used.</p></div></article>
+      <article class="topic" id="your-products-your-fields" data-title="Your products, your fields"><p class="tz">Your SKUs, specs, materials and checklists.</p><div class="body"><p>Define your own SKUs and spec fields: infused or not and with what, coated or not and with what. Add your own materials, lists and log checklists.</p></div></article>
+      <article class="topic" id="your-people-your-access" data-title="Your people, your access"><p class="tz">Your roles, and who can see, edit, approve and sign.</p><div class="body"><p>Build your own roles and decide, area by area and license by license, who can see, edit, approve and sign.</p></div></article>
+      <article class="topic" id="your-documents" data-title="Your documents"><p class="tz">SOPs, courses and printouts with your names and logo.</p><div class="body"><p>Write SOPs in the SOP creator, build training courses and quizzes, and print everything with your legal names, license numbers and logo.</p></div></article>
+      <article class="topic" id="your-company-s-own-hendrix" data-title="Your company's own Hendrix"><p class="tz">Your own address, run by your own admins.</p><div class="body"><ul><li>Your address: <b>hendrixqms.com/yourcompany</b></li><li>Your admins approve your team and set who can see and sign what.</li><li>Any state, any number of licenses: each with its own regulator, rules and legal name on every printout.</li></ul></div></article>
+      <article class="topic" id="training-for-your-team" data-title="Training for your team"><p class="tz">Videos, an in-depth series and the full user manual.</p><div class="body"><p>The <a href="training/">Training Center</a> has short videos and an in-depth series that explains every page: what it is for, why you do it and how to fill it in. Each person sees what fits their job and access. The <a href="training/manual/">user manual</a> covers every field, online or as a PDF.</p></div></article>
+  </div>
+</section>
+
+<dialog class="box" id="box" aria-labelledby="box-title">
+  <div class="tb">
+    <p class="tb-mark"><svg width="18" height="18" viewBox="0 0 40 40" aria-hidden="true"><polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="none" stroke="#d4af37" stroke-width="3" stroke-linejoin="round"/></svg><span id="box-group"></span></p>
+    <h2 id="box-title" tabindex="-1"></h2>
+    <p class="tb-tz" id="box-tz"></p>
+    <div class="body" id="box-body"></div>
+    <div class="tb-nav"><button class="btn" type="button" id="box-prev">Previous</button><span class="tb-pos" id="box-pos"></span><button class="btn" type="button" id="box-next">Next</button></div>
+    <button class="tb-x" type="button" id="box-x" aria-label="Close">&times;</button>
+  </div>
+</dialog>
+
+<div class="wrap end">
+  <section class="card signin" id="sign-in" aria-labelledby="signin-h">
+    <h2 id="signin-h">Client sign-in</h2>
+    <p>Enter the company code from your Hendrix address.</p>
+    <form id="go" novalidate>
+      <label for="code">Company code</label>
+      <div class="field"><span>hendrixqms.com/</span><input id="code" name="code" autocomplete="off" autocapitalize="none" spellcheck="false" inputmode="url"></div>
+      <button class="btn solid" type="submit">Open my Hendrix</button>
+      <p class="err" id="err" role="alert"></p>
+      <p class="cont" id="cont" hidden>Signed in on this device before? <a id="cont-a" href="#">Continue to your Hendrix</a></p>
+    </form>
+  </section>
+
+  <section class="card work" id="work-with-us" aria-labelledby="work-h">
+    <h2 id="work-h">Bring Hendrix to your company</h2>
+    <p>For licensed manufacturers, extractors and cultivators: one license or many, in one state or several, moving from paper, spreadsheets or another system.</p>
+    <a class="mailto" id="mail-addr" href="mailto:sales@hendrixqms.com?subject=Hendrix%20QMS%20for%20our%20company&amp;body=Hello%20Hendrix%20team%2C%0A%0AWe%20would%20like%20to%20see%20Hendrix%20QMS%20for%20our%20company.%0A%0ACompany%20name%3A%0AState%28s%29%3A%0ALicense%20types%20%28manufacturing%2C%20extraction%2C%20cultivation%29%3A%0ANumber%20of%20people%20who%20would%20use%20it%3A%0AWhat%20we%20want%20to%20improve%20first%3A%0ABest%20phone%20number%20and%20time%20to%20reach%20us%3A%0A%0AThank%20you%2C%0A">sales@hendrixqms.com</a>
+    <div class="row">
+      <a class="btn solid" id="mail-btn" href="mailto:sales@hendrixqms.com?subject=Hendrix%20QMS%20for%20our%20company&amp;body=Hello%20Hendrix%20team%2C%0A%0AWe%20would%20like%20to%20see%20Hendrix%20QMS%20for%20our%20company.%0A%0ACompany%20name%3A%0AState%28s%29%3A%0ALicense%20types%20%28manufacturing%2C%20extraction%2C%20cultivation%29%3A%0ANumber%20of%20people%20who%20would%20use%20it%3A%0AWhat%20we%20want%20to%20improve%20first%3A%0ABest%20phone%20number%20and%20time%20to%20reach%20us%3A%0A%0AThank%20you%2C%0A">Email us</a>
+      <button class="btn" type="button" id="copy-mail">Copy the address</button>
+    </div>
+    <div class="alt" id="mail-alt" hidden>
+      <p>No email app opened? Write from your browser instead:</p>
+      <div class="row">
+        <a class="btn" id="mail-gmail" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=sales@hendrixqms.com&amp;su=Hendrix%20QMS%20for%20our%20company&amp;body=Hello%20Hendrix%20team%2C%0A%0AWe%20would%20like%20to%20see%20Hendrix%20QMS%20for%20our%20company.%0A%0ACompany%20name%3A%0AState%28s%29%3A%0ALicense%20types%20%28manufacturing%2C%20extraction%2C%20cultivation%29%3A%0ANumber%20of%20people%20who%20would%20use%20it%3A%0AWhat%20we%20want%20to%20improve%20first%3A%0ABest%20phone%20number%20and%20time%20to%20reach%20us%3A%0A%0AThank%20you%2C%0A" target="_blank" rel="noopener">Gmail</a>
+        <a class="btn" id="mail-outlook" href="https://outlook.office.com/mail/deeplink/compose?to=sales@hendrixqms.com&amp;subject=Hendrix%20QMS%20for%20our%20company&amp;body=Hello%20Hendrix%20team%2C%0A%0AWe%20would%20like%20to%20see%20Hendrix%20QMS%20for%20our%20company.%0A%0ACompany%20name%3A%0AState%28s%29%3A%0ALicense%20types%20%28manufacturing%2C%20extraction%2C%20cultivation%29%3A%0ANumber%20of%20people%20who%20would%20use%20it%3A%0AWhat%20we%20want%20to%20improve%20first%3A%0ABest%20phone%20number%20and%20time%20to%20reach%20us%3A%0A%0AThank%20you%2C%0A" target="_blank" rel="noopener">Outlook</a>
+      </div>
+    </div>
+    <p class="copied" id="copied" role="status"></p>
+    <details>
+      <summary><b>How it works</b><i aria-hidden="true"></i></summary>
+      <div class="body">
+        <ol class="steps">
+          <li><b>Email us</b><span>Your company, your state or states, your license types, and what you want to fix first.</span></li>
+          <li><b>See it on your work</b><span>A walkthrough built around your products, your SOPs and the audit or inspection you're preparing for.</span></li>
+          <li><b>Get your own Hendrix</b><span>Your address at hendrixqms.com/yourcompany, your licenses and state rules loaded, your roles and access set up.</span></li>
+          <li><b>Train your team</b><span>Training videos, the full user manual and role-based courses with quizzes, so everyone knows what each record is for, why it matters and how to fill it in.</span></li>
+        </ol>
+      </div>
+    </details>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap"><span>Hendrix QMS</span><span>Quality management for licensed cannabis operators</span><a href="mailto:sales@hendrixqms.com">sales@hendrixqms.com</a></div>
+</footer>
+
+<script>
+// the hive: clicking a hexagon opens the box with that topic; a link like hendrixqms.com/#csq opens it too
+(function(){
+  var box=document.getElementById('box'),list=[],cur=-1,$=function(i){return document.getElementById(i);};
+  if(!box)return;
+  function show(i){
+    var a=list[i];if(!a)return;cur=i;
+    $('box-title').textContent=a.getAttribute('data-title');
+    $('box-tz').textContent=a.querySelector('.tz').textContent;
+    $('box-body').innerHTML=a.querySelector('.body').innerHTML;
+    var sec=a.closest('section');$('box-group').textContent=sec?sec.querySelector('h2').textContent:'';
+    $('box-pos').textContent=(i+1)+' of '+list.length;
+    $('box-prev').disabled=i===0;$('box-next').disabled=i===list.length-1;
+    box.querySelector('.tb').scrollTop=0;
+    try{history.replaceState(null,'','#'+a.id);}catch(e){}
+  }
+  function open(id){
+    var a=document.getElementById(id);if(!a||!a.classList.contains('topic'))return false;
+    list=Array.prototype.slice.call(a.parentNode.querySelectorAll('.topic'));
+    show(list.indexOf(a));
+    if(!box.open){if(box.showModal)box.showModal();else box.setAttribute('open','');}
+    $('box-title').focus({preventScroll:true});
+    return true;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.hex'),function(h){h.addEventListener('click',function(){open(h.getAttribute('data-t'));});});
+  $('box-prev').addEventListener('click',function(){show(cur-1);});
+  $('box-next').addEventListener('click',function(){show(cur+1);});
+  $('box-x').addEventListener('click',function(){box.close();});
+  box.addEventListener('click',function(e){if(e.target===box)box.close();});
+  box.addEventListener('keydown',function(e){if(e.key==='ArrowRight'&&cur<list.length-1)show(cur+1);if(e.key==='ArrowLeft'&&cur>0)show(cur-1);});
+  box.addEventListener('close',function(){try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}});
+  function fromHash(){var id=decodeURIComponent((location.hash||'').slice(1));if(id)open(id);}
+  window.addEventListener('hashchange',fromHash);fromHash();
+})();
+// "Email us" only works where an email app is set up: also offer Gmail and Outlook in the browser
+(function(){
+  var b=document.getElementById('mail-btn'),alt=document.getElementById('mail-alt');
+  if(b&&alt)b.addEventListener('click',function(){setTimeout(function(){alt.hidden=false;},400);});
+})();
+// work with us: copy the sales address for people without an email app
+(function(){
+  var b=document.getElementById('copy-mail'),m=document.getElementById('copied'),a='sales@hendrixqms.com';
+  if(!b)return;
+  b.addEventListener('click',function(){
+    function done(){m.textContent='Copied: '+a;}
+    function fallback(){try{var t=document.createElement('textarea');t.value=a;t.setAttribute('readonly','');t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();var ok=document.execCommand('copy');document.body.removeChild(t);if(ok)done();else m.textContent='Our address is '+a;}catch(x){m.textContent='Our address is '+a;}}
+    try{if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(a).then(done,fallback);}else fallback();}catch(x){fallback();}
+  });
+})();
+// client sign-in: the company code is the first part of the address
+(function(){
+  var f=document.getElementById('go'),i=document.getElementById('code'),e=document.getElementById('err');
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var c=(i.value||'').trim().toLowerCase().replace(/^https?:\/\/[^/]+\//,'').replace(/\/.*$/,'');
+    if(!c){e.textContent='Enter your company code, the word after hendrixqms.com/ in your Hendrix address.';i.focus();return;}
+    if(!/^[a-z0-9-]{2,40}$/.test(c)){e.textContent='A company code uses only letters, numbers and dashes.';i.focus();return;}
+    e.textContent='';location.href=c+'/';
+  });
+  try{var t=localStorage.getItem('hx_tenant');if(t&&/^[a-z0-9-]{2,40}$/.test(t)){var a=document.getElementById('cont-a');a.href=t+'/';a.textContent='Continue to hendrixqms.com/'+t;document.getElementById('cont').hidden=false;}}catch(x){}
+})();
+
+// the live line map: batches keep moving through their line, into Testing, Passed, QC Release and Released.
+// A batch that fails testing goes red into the Hold siding and rejoins after its retest.
+// Three drawings: wide (computers), compact (tablets) and tall (phones: the lines on top, the release track running down).
+(function(){
+  var NS='http://www.w3.org/2000/svg', rails=document.getElementById('rails'), g=document.getElementById('trains'), svg=document.getElementById('map');
+  if(!rails||!g||!svg)return;
+  var gen=0,visible=true,kindNow=null;
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;}).observe(svg);
+  function kind(){var w=svg.parentNode.clientWidth||0;return w>=820?'wide':w>=520?'compact':'tall';}
+  var BASE=[{name:'Pre-Rolls',c:'#5fbf8a',st:['Received','Filled','Packaged'],code:'PR'},
+    {name:'Cartridges',c:'#d4af37',st:['Received','Filled','Capped'],code:'CT'},
+    {name:'Infused Flower',c:'#4fc1c9',st:['Received','Infused','Cured'],code:'IF'},
+    {name:'Gummies',c:'#e59a4f',st:['Mixed','Deposited','Packaged'],code:'GM'},
+    {name:'Manufacturing Process',c:'#9ccc65',st:['Material used','Pressed','Product made'],code:'RUN'}];
+  var NAMES=['Testing','Passed','QC Release','Released'];
+  function across(o){   // lines run left to right into a horizontal track
+    var Y=[62,146,230,314,398],TY=230;
+    return {W:o.W,H:470,k:o.k,off:o.off,x0:28,SX:o.SX,Y:Y,ny:-30,ly:24,
+      line:function(i){var y=Y[i];return y===TY?'M28 '+y+' H'+o.x0:'M28 '+y+' H'+o.h0+' C'+o.c1+' '+y+' '+o.c2+' '+TY+' '+o.x0+' '+TY;},
+      trunk:'M'+o.x0+' '+TY+' H'+o.x1, tw:10,
+      TS:o.TX.map(function(x,i){return {x:x,y:TY,d:x-o.x0,lx:x,ly:TY+30,a:'middle',l:NAMES[i]};}),
+      hold:(function(){var ha=o.TX[0]+o.off,hb=o.TX[1]-o.off,hy=o.hy,hw=(hb-ha)/2,hx=(ha+hb)/2;
+        return {d:'M'+ha+' '+TY+' C'+(ha+hw*0.2)+' '+(hy-12)+' '+(ha+hw*0.44)+' '+hy+' '+hx+' '+hy+' C'+(hb-hw*0.44)+' '+hy+' '+(hb-hw*0.2)+' '+(hy-12)+' '+hb+' '+TY,x:hx,y:hy,lx:hx,ly:hy+24,a:'middle'};})(),
+      end:o.x1-o.x0-14};
+  }
+  function tall(){      // phones: the lines on top turn down one after another into a release track that runs down the page
+    var Y=[54,126,198,270,342],XT=[366,338,310,282,254],TX=310,TY=424,TT=[478,572,634,694],off=20;
+    return {W:400,H:730,k:1,off:off,x0:20,SX:[56,128,200],Y:Y,ny:-30,ly:22,
+      line:function(i){var y=Y[i],x=XT[i],r=20;return 'M20 '+y+' H'+(x-r)+' Q'+x+' '+y+' '+x+' '+(y+r)+' V372 C'+x+' '+(TY-26)+' '+TX+' '+(TY-26)+' '+TX+' '+TY;},
+      trunk:'M'+TX+' '+TY+' V716', tw:10,
+      TS:TT.map(function(y,i){return {x:TX,y:y,d:y-TY,lx:TX-18,ly:y+4,a:'end',l:NAMES[i]};}),
+      hold:(function(){var ha=TT[0]+off,hb=TT[1]-off,hx=TX-56,hy=(ha+hb)/2;
+        return {d:'M'+TX+' '+ha+' C'+(TX-30)+' '+(ha+4)+' '+hx+' '+(hy-24)+' '+hx+' '+hy+' C'+hx+' '+(hy+24)+' '+(TX-30)+' '+(hb-4)+' '+TX+' '+hb,x:hx,y:hy,lx:hx-14,ly:hy+4,a:'end'};})(),
+      end:716-TY-12};
+  }
+  function layout(k){
+    if(k==='tall')return tall();
+    if(k==='wide')return across({W:1160,SX:[80,250,420],h0:450,c1:540,c2:556,x0:620,x1:1130,TX:[690,840,970,1100],hy:306,k:1.6,off:24});
+    return across({W:700,SX:[60,145,230],h0:250,c1:318,c2:328,x0:380,x1:676,TX:[422,512,586,662],hy:300,k:1,off:18});
+  }
+  function el(t,a,txt){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e;}
+  function start(k){
+  var my=++gen; rails.textContent='';g.textContent='';
+  var G=layout(k);svg.setAttribute('viewBox','0 0 '+G.W+' '+G.H);svg.setAttribute('data-layout',k);
+  var LINES=BASE.map(function(b,i){return {name:b.name,c:b.c,st:b.st,code:b.code,y:G.Y[i]};});
+  var SX=G.SX,TS=G.TS,T0=TS[0].d,TP=TS.slice(1).map(function(t){return t.d;}),TEND=G.end;
+  // rails
+  LINES.forEach(function(L,i){
+    L.path=el('path',{d:G.line(i),fill:'none',stroke:L.c,'stroke-width':6,'stroke-linecap':'round','stroke-linejoin':'round'});rails.appendChild(L.path);L.len=L.path.getTotalLength();
+    rails.appendChild(el('text',{'class':'line-name',x:G.x0,y:L.y+G.ny,fill:L.c},L.name));
+    L.dots=SX.map(function(x,j){var c=el('circle',{'class':'st',cx:x,cy:L.y,r:7,stroke:L.c});rails.appendChild(c);rails.appendChild(el('text',{'class':'lbl',x:x,y:L.y+G.ly,'text-anchor':'middle'},L.st[j]));return c;});
+  });
+  var trunk=el('path',{d:G.trunk,fill:'none',stroke:'#ece6d6','stroke-width':G.tw,'stroke-linecap':'round'}),TL=0;
+  var hold=el('path',{d:G.hold.d,fill:'none',stroke:'#e5705a','stroke-width':5,'stroke-linecap':'round','stroke-dasharray':'2 9'});
+  rails.appendChild(hold);rails.appendChild(trunk);TL=trunk.getTotalLength();
+  var holdLen=hold.getTotalLength();
+  var tdots=TS.map(function(t){var c=el('circle',{'class':'st',cx:t.x,cy:t.y,r:9,stroke:'#ece6d6'});rails.appendChild(c);rails.appendChild(el('text',{'class':'lbl',x:t.lx,y:t.ly,'text-anchor':t.a},t.l));return c;});
+  var hdot=el('circle',{'class':'st',cx:G.hold.x,cy:G.hold.y,r:7,stroke:'#e5705a'});rails.appendChild(hdot);rails.appendChild(el('text',{'class':'lbl',x:G.hold.lx,y:G.hold.ly,'text-anchor':G.hold.a,fill:'#e5705a'},'Hold'));
+  // batches
+  var B=[],seq={PR:118,CT:207,IF:212,GM:41,RUN:41},released=37,rnd=Math.random;
+  function pulse(c){if(!c)return;c.classList.remove('pulse');void c.getBoundingClientRect();c.classList.add('pulse');}
+  function spawn(li,adv){
+    var L=LINES[li],n=++seq[L.code],node=el('g',{});
+    var r=el('rect',{x:-14,y:-8,width:28,height:16,rx:8,fill:L.c});var t=el('text',{'class':'tl',x:0,y:-13,'text-anchor':'middle',fill:'#ece6d6'},L.code==='RUN'?'Run '+n:L.code+'-'+n);
+    node.appendChild(r);node.appendChild(t);g.appendChild(node);
+    var b={L:L,node:node,r:r,t:t,leg:0,pos:0,wait:0,fails:rnd()<0.22,state:'line',alpha:0};
+    b.legs=[{path:L.path,len:L.len,stops:SX.map(function(x){return x-G.x0;}),dots:L.dots,end:L.len},
+            {path:trunk,len:TL,stops:[T0],dots:[tdots[0]],end:T0+G.off,lab:true}];
+    if(b.fails)b.legs.push({path:hold,len:holdLen,stops:[holdLen/2],dots:[hdot],end:holdLen,hold:true},{path:trunk,len:TL,start:TP[0]-G.off,stops:TP,dots:[tdots[1],tdots[2],tdots[3]],end:TEND});
+    else b.legs.push({path:trunk,len:TL,start:T0+G.off,stops:TP,dots:[tdots[1],tdots[2],tdots[3]],end:TEND});
+    b.si=0;B.push(b);
+    if(adv){var steps=Math.floor(adv*60);for(var i=0;i<steps;i++)step(b,1/60,true);}
+    return b;
+  }
+  function ahead(b){ // nearest batch in front on the same path
+    var leg=b.legs[b.leg],best=1e9;
+    B.forEach(function(o){if(o===b||o.done)return;var ol=o.legs[o.leg];if(ol.path!==leg.path)return;if(o.pos>b.pos&&o.pos-b.pos<best)best=o.pos-b.pos;});
+    return best;
+  }
+  var GAP=46, LAST=SX[2]-G.x0;   // only one batch at a time on the curve into the track
+  function mergeBusy(b){return B.some(function(o){if(o===b||o.done)return false;var l=o.legs[o.leg];return (o.leg===0&&o.pos>LAST+0.001&&(o.pos-LAST)<0.55*(o.L.len-LAST))||(l.path===trunk&&o.pos<GAP*0.6);});}
+  function step(b,dt,quiet){
+    if(b.done)return;
+    var leg=b.legs[b.leg];
+    if(b.wait>0){b.wait-=dt;return;}
+    var target=b.si<leg.stops.length?leg.stops[b.si]:leg.end, sp=G.k*(leg.hold?28:(leg.path===trunk?60:(b.pos>LAST?64:42)));
+    var room=ahead(b)-GAP; if(room<0)return;
+    var nx=Math.min(target,b.pos+sp*dt,b.pos+room);
+    if(b.leg===0&&b.pos<=LAST+0.5&&nx>LAST&&mergeBusy(b))nx=Math.min(nx,LAST);
+    b.pos=nx;
+    if(b.pos>=target-0.01){
+      if(b.si<leg.stops.length){
+        if(!quiet)pulse(leg.dots[b.si]);
+        b.wait=leg.lab?1.5+rnd()*0.9:leg.hold?3.2+rnd()*1.6:0.4+rnd()*0.7;
+        if(leg.lab){b.state=b.fails?'fail':'lab';}
+        if(leg.hold)b.state='hold';
+        if(leg.path===trunk&&b.leg>=2&&b.si===2){b.state='released';}
+        b.si++;
+      }else if(b.leg<b.legs.length-1){
+        b.leg++;var nl=b.legs[b.leg];b.pos=nl.start||0;b.si=0;
+        if(b.state==='hold')b.state='retest';
+        if(b.state==='lab')b.state='passed';
+      }else{b.done=true;b.fade=1;if(!quiet)released++;}
+    }
+  }
+  function draw(b){
+    var leg=b.legs[b.leg],p=leg.path.getPointAtLength(Math.max(0,Math.min(b.pos,leg.len)));
+    b.node.setAttribute('transform','translate('+p.x.toFixed(1)+' '+p.y.toFixed(1)+')');
+    var col=b.L.c;
+    if(b.state==='lab'||(b.state==='fail'&&b.wait>0.9)){b.r.setAttribute('fill','#0b0b0b');b.r.setAttribute('stroke','#ece6d6');b.r.setAttribute('stroke-dasharray','3 3');}
+    else if(b.state==='fail'||b.state==='hold'){b.r.setAttribute('fill','#e5705a');b.r.removeAttribute('stroke');b.t.setAttribute('fill','#e5705a');}
+    else{b.r.setAttribute('fill',col);b.r.removeAttribute('stroke');b.t.setAttribute('fill','#ece6d6');}
+    b.alpha=Math.min(1,b.alpha+0.08);
+    if(b.done){b.fade-=0.05;b.node.setAttribute('opacity',Math.max(0,b.fade));}else b.node.setAttribute('opacity',b.alpha);
+  }
+  var ms={prod:document.getElementById('ms-prod'),lab:document.getElementById('ms-lab'),hold:document.getElementById('ms-hold'),rel:document.getElementById('ms-rel')};
+  function stats(){
+    var prod=0,lab=0,hold=0;
+    B.forEach(function(b){if(b.done)return;if(b.leg===0)prod++;else if(b.legs[b.leg].hold||b.state==='fail')hold++;else if(b.legs[b.leg].lab)lab++;});
+    ms.prod.textContent=prod;ms.lab.textContent=lab;ms.hold.textContent=hold;ms.rel.textContent=released;
+  }
+  // start with a busy floor
+  var begin=[[0,9],[1,4],[2,12],[3,2],[4,6],[0,20],[1,15],[2,1],[3,18],[4,24],[1,26]];
+  begin.forEach(function(s){spawn(s[0],s[1]);});
+  B.forEach(draw);stats();
+  var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(still)return;
+  var last=null,acc=0,next=1.2;
+  function frame(ts){
+    if(my!==gen)return;
+    if(last===null)last=ts;var dt=Math.min(0.05,(ts-last)/1000);last=ts;
+    if(visible){
+      B.forEach(function(b){step(b,dt,false);});
+      for(var i=B.length-1;i>=0;i--){if(B[i].done&&B[i].fade<=0){g.removeChild(B[i].node);B.splice(i,1);}}
+      acc+=dt;if(acc>next&&B.filter(function(b){return !b.done;}).length<14){
+        // a new batch starts on a line with room at its first station, the least busy first
+        var c=LINES.map(function(L,i){var on=B.filter(function(b){return !b.done&&b.leg===0&&b.L===L;});return {i:i,n:on.length,free:!on.some(function(b){return b.pos<GAP+4;})};}).filter(function(x){return x.free&&x.n<3;});
+        if(c.length){var m=Math.min.apply(null,c.map(function(x){return x.n;}));c=c.filter(function(x){return x.n===m;});acc=0;next=1.8+rnd()*1.4;spawn(c[Math.floor(rnd()*c.length)].i,0);}}
+      B.forEach(draw);stats();
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  }
+  kindNow=kind();start(kindNow);
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){var k=kind();if(k!==kindNow){kindNow=k;start(k);}},200);});
+})();
+</script>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hendrixqms.com/sitemap.xml
